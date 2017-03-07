@@ -43,6 +43,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 // subclass and overide this method if necessary
 - (BOOL)isErrorFatal:(NSError *)error {
     switch (error.code) {
+        case kCFURLErrorCannotConnectToHost:
         case kCFHostErrorHostNotFound:
         case kCFHostErrorUnknown: // Query the kCFGetAddrInfoFailureKey to get the value returned from getaddrinfo; lookup in netdb.h
             // HTTP errors
