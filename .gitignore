@@ -2,3 +2,7 @@
 .DS_Store
 
 *.xcuserstate
+AFNetworking-AutoRetry.xcodeproj/xcuserdata/leo.chang.xcuserdatad/xcschemes/AFNetworking-AutoRetry.xcscheme
+AFNetworking-AutoRetry.xcodeproj/xcuserdata/leo.chang.xcuserdatad/xcschemes/AFNetworking-AutoRetryTests.xcscheme
+AFNetworking-AutoRetry.xcodeproj/xcuserdata/leo.chang.xcuserdatad/xcschemes/xcschememanagement.plist
+AFNetworking-AutoRetry.xcworkspace/xcshareddata/AFNetworking-AutoRetry.xcscmblueprint
