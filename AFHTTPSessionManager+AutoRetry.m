@@ -131,7 +131,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
         // Retry the request
         ARLog(@"AutoRetry: Request failed: %@, retry %d out of %d begining...",
               error.localizedDescription, originalRetryCount - retriesRemainingCount + 1, originalRetryCount);
-        void (^addRetryOperation)() = ^{
+        void (^addRetryOperation)(void) = ^{
             [self requestUrlWithAutoRetry:retriesRemaining - 1 retryInterval:intervalInSeconds originalRequestCreator:taskCreator originalFailure:failure];
         };
         RetryDelayCalcBlock delayCalc = self.retryDelayCalcBlock;
