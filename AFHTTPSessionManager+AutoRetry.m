@@ -3,6 +3,7 @@
 // Edited by Shivan Raptor on 1/28/16.
 // Copyright (c) 2014 shaioz. All rights reserved.
 
+#import "AFHTTPRequestOperationManager+AutoRetry.h"
 #import "AFHTTPSessionManager+AutoRetry.h"
 #import "ObjcAssociatedObjectHelpers.h"
 
@@ -111,6 +112,11 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                                   originalFailure:(void(^)(NSURLSessionDataTask *, NSError *))failure {
     id taskcreatorCopy = [taskCreator copy];
     void(^retryBlock)(NSURLSessionDataTask *, NSError *) = ^(NSURLSessionDataTask *task, NSError *error) {
+        // operation has been cancelled, exit immediatelly
+        if (operation.isCancelled) {
+            return;
+        }
+
         // error is fatal, do not retry
         if ([self isErrorFatal:error]) {
             ARLog(@"AutoRetry: Request failed with error: %@", error.localizedDescription);
@@ -127,6 +133,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
             ARLog(@"AutoRetry: No more retries allowed! executing supplied failure block...");
             failure(task, error);
             ARLog(@"AutoRetry: done.");
+            return;
         }
         
         // Retry the request
